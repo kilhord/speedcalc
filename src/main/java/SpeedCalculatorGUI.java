@@ -65,12 +65,12 @@ public class SpeedCalculatorGUI extends JFrame
 
     private int calcHi(int speed, int cr, boolean lapped)
     {
-        return (int) Math.ceil((speed*1.05)*crDec(cr, lapped));
+        return (int) Math.ceil(speed*crDec(cr, lapped));
     }
 
     private int calcLo(int speed, int cr, boolean lapped)
     {
-        return  (int) Math.ceil((speed * crDec(cr, lapped)) - (speed * .05));
+        return  (int) Math.ceil(((speed * 1.05) * crDec(cr, lapped)));
     }
 
     private void runCalculator()
@@ -98,8 +98,8 @@ public class SpeedCalculatorGUI extends JFrame
         }
         outsped = outSpedField.isSelected();
         resultBox.setText("With your speed of " + mySpeed + " and the enemy CR at " + enemyCR +
-                "% while" + (outsped?" ":" not ") + "being outsped\nThey should be between " +
-                calcLo(mySpeed , enemyCR, outsped) + " and " + calcHi(mySpeed , enemyCR, outsped));
+                "% while" + (outsped?" ":" not ") + "being outsped\nThey should be " +
+                calcHi(mySpeed , enemyCR, outsped) + " - " + calcLo(mySpeed , enemyCR, outsped));
     }
 
     public static void main(String[] args)
